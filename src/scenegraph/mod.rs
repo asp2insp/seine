@@ -1,5 +1,5 @@
 /// A 2D Scene Graph model.
-/// The scene is represented by a tree where each node represents a single entity.
+/// The scene is represented by an N-ary-tree where each node represents a single entity.
 /// An entity may be drawable, or it may simply transform its children.
 /// Internally, the scene graph is a copy-on-write immutable tree structure. This allows
 /// easy caching of intermediate calculations, such as transformations, middleware, and
@@ -9,9 +9,17 @@
 
 use renderer::*;
 
+pub struct BoundingBox {
+    t: f64,
+    l: f64,
+    b: f64,
+    r: f64,
+}
+
 pub struct Node<'n> {
     transformer: Vec<&'n Transformer<'n>>,
     children: Vec<Node<'n>>,
+    bounding_box: BoundingBox,
 }
 
 pub trait Drawable {

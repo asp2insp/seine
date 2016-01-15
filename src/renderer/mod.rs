@@ -15,3 +15,9 @@ pub struct Context {
     text_color: Color,
     shadow_color: Color,
 }
+
+impl Renderer {
+    fn measure_pass(node: &mut Node, context: &Context) {
+        // We need info from all the leaves before 
+    }
+}
